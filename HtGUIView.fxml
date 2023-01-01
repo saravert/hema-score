@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import fi.jyu.mit.fxgui.ComboBoxChooser?>
+<?import fi.jyu.mit.fxgui.ListChooser?>
+<?import fi.jyu.mit.fxgui.StringGrid?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxHt.HtGUIController">
+   <bottom>
+      <HBox spacing="10.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleAddFencer" text="Add fencer" />
+            <Button mnemonicParsing="false" onAction="#handleEditFencer" text="Edit fencer" />
+            <Button mnemonicParsing="false" onAction="#handleRemoveFencer" text="Remove fencer" />
+            <Button mnemonicParsing="false" onAction="#handleAddMatch" text="Add match" />
+            <Button mnemonicParsing="false" onAction="#handleRemoveMatch" text="Remove mach" />
+            <Button mnemonicParsing="false" onAction="#handleTallenna" text="Save" />
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleLopeta" text="Close" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleTallenna" text="Save" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleAddFencer" text="Add fencer" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleEditFencer" text="Edit fencer" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAddMatch" text="Add match" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleEditMatch" text="Edit match" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleRemoveMatch" text="Delete match" />
+                  <MenuItem mnemonicParsing="false" text="Cancel" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <ListChooser fx:id="chooserJasenet" rivit="Dei Liberi Fiore&#10;Capo Ferro Ridolfo&#10;Agrippa Camillo&#10;Liechtenauer Johannes&#10;Döbringer Hans&#10;ain Ringeck Sigmund&#10;Talhoffer Hans&#10;Vadi Philippo&#10;Marozzo Achille" BorderPane.alignment="CENTER" />
+         </center>
+         <top>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Search" />
+                  <ComboBoxChooser fx:id="cbKentat" maxWidth="300.0" onKeyReleased="#handleHakuehto" rivit="Name&#10;Club&#10;Country" />
+                  <TextField fx:id="hakuehto" onKeyReleased="#handleHakuehto" />
+                  <Label fx:id="labelVirhe" alignment="CENTER" maxWidth="300.0" text="Fencers" />
+               </children>
+            </VBox>
+         </top>
+      </BorderPane>
+   </left>
+   <center>
+      <ScrollPane fx:id="panelJasen" fitToWidth="true" prefHeight="390.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <GridPane hgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" minWidth="50.0" />
+                <ColumnConstraints hgrow="ALWAYS" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label text="Name" />
+                  <Label text="Club" GridPane.rowIndex="1" />
+                  <Label text="Country" GridPane.rowIndex="2" />
+                  <TextField fx:id="editName" editable="false" text="Dei Liberi Fiore" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                  <TextField fx:id="editClub" editable="false" text="Premariacco" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                  <TextField fx:id="editCountry" editable="false" text="Italy" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </center>
+   <right>
+      <BorderPane maxWidth="0.0" BorderPane.alignment="CENTER">
+         <top>
+            <Label text="Matches" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <StringGrid fx:id="matchesGrid" minWidth="300.0" rivit="opponent name|own points|opponent's points|&#10;Capo Ferro  Ridolfo| 5 |  2&#10;Döbringer Hans| 7| 7&#10;Agrippa Camilo | 9 | 10 &#10;" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </right>
+</BorderPane>
